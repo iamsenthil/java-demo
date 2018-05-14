@@ -3,6 +3,8 @@ package com.srk.demo.unit.srk_unit;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -41,5 +43,11 @@ public class AppTest extends TestCase {
 		Device device = mock(Device.class);
 		when(device.getID()).thenReturn(2);
 		assertEquals("Device ID mismatch ", 2, device.getID());
+	}
+	
+	public void testApp3() throws JsonProcessingException {
+		Device device = new Device(100);
+		ObjectMapper objectMapper = new ObjectMapper();
+		assertEquals("Device JSON mismatch ", "{\"id\":100}", objectMapper.writeValueAsString(device));
 	}
 }
