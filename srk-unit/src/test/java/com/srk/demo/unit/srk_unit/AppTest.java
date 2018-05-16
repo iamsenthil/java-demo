@@ -44,7 +44,7 @@ public class AppTest extends TestCase {
 		when(device.getID()).thenReturn(2);
 		assertEquals("Device ID mismatch ", 2, device.getID());
 	}
-	
+
 	public void testApp3() throws JsonProcessingException {
 		Device device = new Device(100);
 		ObjectMapper objectMapper = new ObjectMapper();
