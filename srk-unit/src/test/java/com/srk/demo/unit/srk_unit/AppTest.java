@@ -3,6 +3,7 @@ package com.srk.demo.unit.srk_unit;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.demo.java.http.WebClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,19 +36,26 @@ public class AppTest extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testApp1() {
-		Device device = new Device(1);
+		final Device device = new Device(1);
 		assertEquals("Device ID mismatch ", 1, device.getID());
 	}
 
 	public void testApp2() {
-		Device device = mock(Device.class);
+		final Device device = mock(Device.class);
 		when(device.getID()).thenReturn(2);
 		assertEquals("Device ID mismatch ", 2, device.getID());
 	}
 
 	public void testApp3() throws JsonProcessingException {
-		Device device = new Device(100);
-		ObjectMapper objectMapper = new ObjectMapper();
+		final Device device = new Device(100);
+		final ObjectMapper objectMapper = new ObjectMapper();
 		assertEquals("Device JSON mismatch ", "{\"id\":100}", objectMapper.writeValueAsString(device));
+	}
+
+	public void testApp4() {
+		final WebClient webClient = mock(WebClient.class);
+		when(webClient.sendData("", "")).thenReturn(true);
+		assertEquals("Send Web Reqest failes", true, webClient.sendData("", ""));
+
 	}
 }

@@ -18,50 +18,30 @@ import okhttp3.Response;
 public class App {
 	public static void main(String[] args) {
 
-		ObjectMapper objectMapper = new ObjectMapper();
-		Device device = new Device(100);
+		final ObjectMapper objectMapper = new ObjectMapper();
+		final Device device = new Device(100);
 		try {
 			System.out.println(objectMapper.writeValueAsString(device));
-		} catch (JsonProcessingException e) {
+		} catch (final JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		String json = "{\"id\":100}";
+		final String json = "{\"id\":100}";
 		try {
-			Device newDevice = objectMapper.readValue(json, Device.class);
+			final Device newDevice = objectMapper.readValue(json, Device.class);
 			System.out.println(newDevice.getID());
-		} catch (JsonParseException e) {
+		} catch (final JsonParseException e) {
 			e.printStackTrace();
-		} catch (JsonMappingException e) {
+		} catch (final JsonMappingException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		OkHttpClient client = new OkHttpClient();
-		Request request = new Request.Builder().url("https://en.wikipedia.org/w/index.php").build();
-		Response response = null;
-		try {
-			response = client.newCall(request).execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (!response.isSuccessful())
-			try {
-				throw new IOException("Unexpected code " + response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		try {
-			System.out.println(response.body().string());
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	String runa(String url) throws IOException {
-		Request request = new Request.Builder().url(url).build();
-		OkHttpClient client1 = new OkHttpClient();
-		Response response = client1.newCall(request).execute();
+	String requestForData(String url) throws IOException {
+		final Request request = new Request.Builder().url(url).build();
+		final OkHttpClient client1 = new OkHttpClient();
+		final Response response = client1.newCall(request).execute();
 		return response.body().string();
 	}
 }
