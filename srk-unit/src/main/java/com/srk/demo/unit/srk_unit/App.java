@@ -2,6 +2,7 @@ package com.srk.demo.unit.srk_unit;
 
 import java.io.IOException;
 
+import com.demo.java.http.WebClient;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -36,6 +37,8 @@ public class App {
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
+		final WebClient webclient = WebClient.getInstance();
+		System.out.println(webclient.getData("https://www.google.com").getResponse());
 	}
 
 	String requestForData(String url) throws IOException {

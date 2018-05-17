@@ -32,7 +32,7 @@ public class WebClient implements HttpWebInterface {
 	}
 
 	private static final WebClient instance = new WebClient();
-	private OkHttpClient client;
+	private OkHttpClient client = null;
 
 	private WebClient() {
 		init();
