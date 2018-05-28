@@ -9,7 +9,16 @@ public class Main {
 		BlockChain blockChain = new BlockChain();
 		blockChain.addBlock("One");
 		blockChain.addBlock("Two");
+		//blockChain.addInvalidBlock("Two");
+		blockChain.addBlock("Two");
+		blockChain.addBlock("Two");
+		blockChain.addBlock("Two");
+		blockChain.addBlock("Two");
 		blockChain.printAll();
+		if(!blockChain.isValid())
+		{
+			System.out.println("Invalid Blockchain");
+		}
 		System.out.println("Blockchain End");
 	}
 
